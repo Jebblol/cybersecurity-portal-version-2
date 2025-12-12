@@ -3,31 +3,6 @@ import express from "express";
 const app = express();
 app.use(express.json());
 
-const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN;
-
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-
-  // If you set ALLOWED_ORIGIN, only allow that exact origin.
-  // If not set (demo), allow whatever origin is requesting.
-  const allowOrigin = ALLOWED_ORIGIN || origin;
-
-  if (allowOrigin) {
-    res.setHeader("Access-Control-Allow-Origin", allowOrigin);
-    res.setHeader("Vary", "Origin");
-  }
-
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
-  // IMPORTANT: Always return the headers on preflight
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
-
-  next();
-});
-
 
 // ---- CORS (lock this down to your GitHub Pages URL) ----
 // Replace this with your real GitHub Pages origin:
@@ -121,4 +96,5 @@ Link: ${linkC}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("API listening on", PORT));
+
 
