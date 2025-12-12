@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CyberSafeHub - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CDN so you don’t waste time on CSS from scratch -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">CyberSafeHub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+  <ul class="navbar-nav ms-auto">
+    <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="modulesDropdown" role="button" data-bs-toggle="dropdown">
+    Modules
+  </a>
+  <ul class="dropdown-menu dropdown-menu-dark">
+    <li><a class="dropdown-item" href="module-passwords.html">Passwords & Authentication</a></li>
+    <li><a class="dropdown-item" href="module-phishing.html">Phishing & Social Engineering</a></li>
+    <li><a class="dropdown-item" href="ethical-hacking.html">Ethical Hacking</a></li>
+  </ul>
+</li>
+
+    <li class="nav-item"><a class="nav-link" href="ethical-hacking.html">Ethical Hacking</a></li>
+  </ul>
+
+  <!-- Theme toggle button -->
+  <button class="btn btn-sm btn-outline-light ms-3" id="themeToggle" type="button">
+    Light mode
+  </button>
+</div>
+
+  </nav>
+
+  <!-- MAIN CONTENT GOES HERE -->
+  <main class="container my-5">
+  <main class="container my-5">
+  <h1 class="mb-3">Ethical Hacking & Legal Boundaries</h1>
+  <p class="lead">
+    Ethical hackers help organizations find weaknesses before criminals do. The key difference is
+    <strong>permission</strong> and <strong>responsible behavior</strong>.
+  </p>
+
+  <section class="mb-4">
+    <h4>What Ethical Hackers Do</h4>
+    <ul>
+      <li>Get written permission to test a system.</li>
+      <li>Scan for known vulnerabilities and misconfigurations.</li>
+      <li>Report findings clearly so they can be fixed.</li>
+      <li>Follow laws and non-disclosure agreements.</li>
+    </ul>
+  </section>
+
+  <section class="mb-4">
+    <h4>White Hat vs Black Hat vs Grey Hat</h4>
+    <ul>
+      <li><strong>White hat:</strong> Authorized, legal, helps organizations.</li>
+      <li><strong>Black hat:</strong> Illegal hacking for profit or damage.</li>
+      <li><strong>Grey hat:</strong> No permission, but claims “good intentions” – still risky and often illegal.</li>
+    </ul>
+  </section>
+
+  <section class="mb-4">
+    <h4>Scenarios: Ethical or Not?</h4>
+    <div id="ethicalScenarios"></div>
+    <div id="ethicalResult" class="mt-3 fw-bold"></div>
+  </section>
+</main>
+
+<script src="assets/app.js"></script>
+
+  </main>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
