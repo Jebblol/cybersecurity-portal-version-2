@@ -1,15 +1,15 @@
-// ===================== Helper: Pick Random Questions =====================
+// Helper: Pick Random Questions 
 function pickRandomQuestions(bank, count) {
   const shuffled = [...bank].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, count);
 }
 
-// ===================== MAIN APP LOGIC =====================
+// MAIN APP LOGIC
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ========================================================
+
   // 0. THEME TOGGLE (DARK / LIGHT MODE)
-  // ========================================================
+
   const themeToggleBtn = document.getElementById("themeToggle");
 
   function applyTheme(theme) {
@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ========================================================
+
   // 1. 60-SECOND RISK CHECK (HOME PAGE)
-  // ========================================================
+
   const riskForm = document.getElementById("riskForm");
   if (riskForm) {
     riskForm.addEventListener("submit", (e) => {
@@ -69,16 +69,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ========================================================
   // 2. PASSWORD MODULE
-  // ========================================================
+
   const passwordInput = document.getElementById("passwordInput");
   if (passwordInput) {
 
     const strengthSpan = document.getElementById("passwordStrength");
     const tipsDiv = document.getElementById("passwordTips");
 
-    // ---------- Password Strength Checker ----------
+    //Password Strength Checker
     passwordInput.addEventListener("input", () => {
       const pwd = passwordInput.value;
       let score = 0;
@@ -106,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         : "Nice. This is a strong structure.";
     });
 
-    // ---------- PASSWORD QUIZ QUESTION BANK (10 QUESTIONS) ----------
+    // PASSWORD QUIZ QUESTION BANK (10 QUESTIONS)
     const passwordBank = [
       {
         question: "Which password is the safest?",
@@ -198,9 +197,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ========================================================
+  
   // 3. PHISHING MODULE
-  // ========================================================
+
   const inboxDiv = document.getElementById("inbox");
   if (inboxDiv) {
 
@@ -264,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // ---------- PHISHING QUESTION BANK (10 QUESTIONS) ----------
+    // PHISHING QUESTION BANK (10 QUESTIONS)
     const phishingBank = [
       {
         question: "Which is a common sign of phishing?",
@@ -336,9 +335,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ========================================================
   // 4. ETHICAL HACKING SCENARIOS
-  // ========================================================
+
   const ethicalDiv = document.getElementById("ethicalScenarios");
   if (ethicalDiv) {
     const scenarios = [
@@ -395,9 +393,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-    // ========================================================
   // 5. EMAIL SCAM CHECKER MODULE
-  // ========================================================
+
   const analyzeBtn = document.getElementById("analyzeEmailBtn");
   if (analyzeBtn) {
     const senderInput = document.getElementById("emailSender");
@@ -415,11 +412,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const body = (bodyInput.value || "").toLowerCase();
       const link = (linkInput.value || "").toLowerCase();
 
-            // --- AI Second Opinion (Gemini via backend proxy) ---
+            // AI Second Opinion (Gemini via backend proxy) 
       const aiBox = document.getElementById("emailAiExplanation");
 
-      // IMPORTANT: replace with your real Render URL
-      const AI_API_URL = "https://YOUR-RENDER-SERVICE.onrender.com/api/analyze-email";
+      // IMPORTANT: replace with your real Render URL to use
+      const AI_API_URL = "https://cybersecurity-portal-version-2.onrender.com";
 
       if (aiBox) aiBox.textContent = "Asking AI for a second opinion...";
 
@@ -452,7 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let score = 0;
       const reasons = [];
 
-      // --- Rule 1: suspicious domain in sender or link ---
+      //Rule 1: suspicious domain in sender or link
       const suspiciousTlds = [".xyz", ".win", ".top", ".click", ".loan", ".vip"];
       const allText = sender + " " + link;
       if (suspiciousTlds.some(tld => allText.includes(tld))) {
@@ -460,34 +457,34 @@ document.addEventListener("DOMContentLoaded", () => {
         reasons.push("Uses a suspicious or uncommon domain extension.");
       }
 
-      // --- Rule 2: sender name vs known brands spelled weirdly ---
+      //Rule 2: sender name vs known brands spelled weirdly
       if (sender.includes("paypai") || sender.includes("paypaI") || sender.includes("netfIix")) {
         score += 15;
         reasons.push("Sender looks like a spoof of a known brand (typo or replaced letters).");
       }
 
-      // --- Rule 3: urgent language in subject/body ---
+      //Rule 3: urgent language in subject/body
       const urgencyWords = ["24 hours", "immediately", "urgent", "suspend", "suspended", "last chance"];
       if (urgencyWords.some(w => subject.includes(w) || body.includes(w))) {
         score += 15;
         reasons.push("Uses urgent language to pressure you into acting quickly.");
       }
 
-      // --- Rule 4: prize / too good to be true ---
+      //Rule 4: prize / too good to be true
       const prizeWords = ["you won", "winner", "free iphone", "gift card", "lottery"];
       if (prizeWords.some(w => subject.includes(w) || body.includes(w))) {
         score += 20;
         reasons.push("Promises unrealistic rewards or prizes.");
       }
 
-      // --- Rule 5: asks for credentials or payment info ---
+      //Rule 5: asks for credentials or payment info
       const credentialWords = ["password", "login", "otp", "one-time code", "credit card", "bank account"];
       if (credentialWords.some(w => body.includes(w))) {
         score += 20;
         reasons.push("Asks for passwords, OTPs, or sensitive financial details.");
       }
 
-      // --- Rule 6: link mismatch style pattern ---
+      // Rule 6: link mismatch style pattern
       if (link && link.includes("http") && (link.includes("@") || link.split(".").length > 5)) {
         score += 10;
         reasons.push("Link structure looks unusual (multiple dots, @ symbol, or long subdomain).");
@@ -531,9 +528,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
 
-  // ========================================================
+
   // 6. MODULE COMPLETION TRACKING
-  // ========================================================
+
   const completeBtn = document.getElementById("completeModule");
   if (completeBtn) {
     const moduleKey = completeBtn.getAttribute("data-module");
@@ -555,3 +552,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
