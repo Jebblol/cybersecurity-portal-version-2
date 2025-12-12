@@ -415,6 +415,40 @@ document.addEventListener("DOMContentLoaded", () => {
       const body = (bodyInput.value || "").toLowerCase();
       const link = (linkInput.value || "").toLowerCase();
 
+            // --- AI Second Opinion (Gemini via backend proxy) ---
+      const aiBox = document.getElementById("emailAiExplanation");
+
+      // IMPORTANT: replace with your real Render URL
+      const AI_API_URL = "https://YOUR-RENDER-SERVICE.onrender.com/api/analyze-email";
+
+      if (aiBox) aiBox.textContent = "Asking AI for a second opinion...";
+
+      fetch(AI_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sender: senderInput.value || "",
+          subject: subjectInput.value || "",
+          body: bodyInput.value || "",
+          link: linkInput.value || ""
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (!aiBox) return;
+          if (data.aiExplanation) {
+            aiBox.textContent = data.aiExplanation;
+          } else {
+            aiBox.textContent = "AI didn’t return an explanation. Try again.";
+          }
+        })
+        .catch(err => {
+          console.error("AI fetch error:", err);
+          if (aiBox) aiBox.textContent =
+            "AI is unavailable right now (backend not reachable). Heuristic results still work.";
+        });
+
+
       let score = 0;
       const reasons = [];
 
@@ -489,14 +523,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const li = document.createElement("li");
             li.textContent = r;
             reasonsList.appendChild(li);
+            
           });
         }
       }
     });
   }
+  
 
   // ========================================================
-  // 5. MODULE COMPLETION TRACKING
+  // 6. MODULE COMPLETION TRACKING
   // ========================================================
   const completeBtn = document.getElementById("completeModule");
   if (completeBtn) {
