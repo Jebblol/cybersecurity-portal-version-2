@@ -416,7 +416,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const aiBox = document.getElementById("emailAiExplanation");
 
       // IMPORTANT: replace with your real Render URL to use
-      const AI_API_URL = "https://cybersecurity-portal-version-2.onrender.com";
+      const AI_API_URL = "https://cybersecurity-portal-version-2.onrender.com/api/analyze-email";
 
       if (aiBox) aiBox.textContent = "Asking AI for a second opinion...";
 
@@ -552,4 +552,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
